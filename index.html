@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Competitors Are Using AI—Why Aren't You?</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="https://i.ibb.co/RCy0GMk/fav2.jpg">
+  <link rel="shortcut icon" href="https://i.ibb.co/RCy0GMk/fav2.jpg" type="image/jpeg">
+  <link rel="apple-touch-icon" href="https://i.ibb.co/RCy0GMk/fav2.jpg">
+
+  <!-- Calendly Widget -->
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    #confetti-canvas {
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+    }
+
+    #root {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Ensures chat agent is always visible */
+    #voiceflow-chat {
+      z-index: 10000 !important;
+    }
+  </style>
+
+  <!-- External Styles -->
+  <link rel="stylesheet" href="/chatagentstyle.css">
+</head>
+<body>
+  <div id="root"></div>
+
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Confetti Effect -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+  <!-- Load Extensions -->
+  <script type="module">
+    import {
+      DisableInputExtension,
+      VideoExtension,
+      TimerExtension,
+      FormExtension,
+      MapExtension,
+      FileUploadExtension,
+      KBUploadExtension,
+      DateExtension,
+      ConfettiExtension,
+      MatrixEffectExtension,
+      MultiSelectExtension,
+      DateTimeExtension,
+      MenuExtension,
+      FeedbackExtension,
+      ContactFormExtension,
+      DateTimeGuestExtension
+    } from '/src/lib/extensions.js';
+
+    window.customExtensions = [
+      DisableInputExtension,
+      VideoExtension,
+      TimerExtension,
+      FormExtension,
+      MapExtension,
+      FileUploadExtension,
+      KBUploadExtension,
+      DateExtension,
+      ConfettiExtension,
+      MatrixEffectExtension,
+      MultiSelectExtension,
+      DateTimeExtension,
+      MenuExtension,
+      FeedbackExtension,
+      ContactFormExtension,
+      DateTimeGuestExtension
+    ];
+  </script>
+
+  <!-- Voiceflow Chat Widget with Extensions -->
+  <script type="text/javascript">
+    (function(d, t) {
+      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      v.onload = function() {
+        window.voiceflow.chat.load({
+          verify: { projectID: '673a1cf779d83ac8ed176431' },  // ✅ Correct Project ID
+          url: 'https://general-runtime.voiceflow.com',
+          versionID: 'production',
+          assistant: {
+            stylesheet: "/chatagentstyle.css",
+            extensions: window.customExtensions
+          },
+          autostart: true,
+          allowDangerousHTML: true
+        });
+      }
+      v.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
+      v.type = "text/javascript"; 
+      s.parentNode.insertBefore(v, s);
+    })(document, 'script');
+  </script>
+
+  <!-- Main Script -->
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>
